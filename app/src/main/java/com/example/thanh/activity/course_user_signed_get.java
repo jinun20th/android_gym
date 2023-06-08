@@ -100,26 +100,26 @@ public class course_user_signed_get extends NavActivity {
         TextView textViewCapacity = findViewById(R.id.capacityValue);
 
         TextView textViewLocation = findViewById(R.id.locationValue);
-        Log.d("debug", "1");
+
         imageViewAva.setImageResource(R.drawable.course);
         textViewName.setText(course.getCourses().getTitle());
         textViewRole.setText("Fitness Coach");
         textViewAuthor.setText(course.getTrainerinfo().getLastName() + course.getTrainerinfo().getFirstName());
         textViewUpdated.setText("Last Updated: " + String.valueOf(course.getCourses().getLastModifyDate()));
         textViewFeeInfo.setText(String.valueOf(course.getCourses().getFee()) + "đ");
-        Log.d("debug", "2");
+
         textViewDescInfo.setText(course.getCourses().getDescription());
-        Log.d("debug", "3");
+
         textViewServiceName.setText(course.getServiceinfo().getName());
         textViewServiceDesc.setText(course.getServiceinfo().getDescription());
-        Log.d("debug", "4");
+
         long from = course.getCourses().getStartDate();
         long to = course.getCourses().getEndDate();
         Date dateFrom = new Date(from * 1000);
         Date dateTo = new Date(to * 1000);
 
         // Tạo định dạng cho đối tượng Date
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         // Chuyển đổi đối tượng Date thành chuỗi ngày tháng
         String fromDate = dateFormat.format(dateFrom);

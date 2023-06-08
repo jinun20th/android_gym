@@ -1,76 +1,104 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".activity.AddNewFoodUserActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/backContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp">
+
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/btn_shape_round"
+            android:contentDescription="back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_arrow_back" />
+
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="List Of Food"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <ListView
-            android:id="@+id/listFood"
-            android:layout_width="match_parent"
-            android:layout_height="327dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
-            android:id="@+id/AddFood"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add new food" />
+    <ListView
+        android:id="@+id/listFood"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add New Food User"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+    <Button
+        android:id="@+id/AddFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add new food" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add New Food User"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 
-        <EditText
-            android:id="@+id/foodIdEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Food ID" />
+    <EditText
+        android:id="@+id/foodIdEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Food ID" />
 
-        <EditText
-            android:id="@+id/userIdEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="User ID" />
+    <EditText
+        android:id="@+id/userIdEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="User ID" />
 
-        <EditText
-            android:id="@+id/useDatetimeEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Use Datetime" />
+    <EditText
+        android:id="@+id/useDatetimeEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Use Datetime" />
 
-        <!--    <EditText-->
-        <!--        android:id="@+id/sessionsSpinner"-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:hint="Session" />-->
-        <Spinner
-            android:id="@+id/sessionsSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/Session_items"
-            android:paddingTop="14dp"
-            android:paddingBottom="2dp" />
+    <!--    <EditText-->
+    <!--        android:id="@+id/sessionsSpinner"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:hint="Session" />-->
+    <Spinner
+        android:id="@+id/sessionsSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/Session_items"
+        android:paddingTop="14dp"
+        android:paddingBottom="2dp" />
 
-        <View
-            android:layout_width="372dp"
-            android:layout_height="2dp"
-            android:layout_marginLeft="4dp"
-            android:background="@android:color/darker_gray" />
+    <View
+        android:layout_width="372dp"
+        android:layout_height="2dp"
+        android:layout_marginLeft="4dp"
+        android:background="@android:color/darker_gray" />
 
-        <Button
-            android:id="@+id/AddNewFoodUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Create" />
+    <Button
+        android:id="@+id/AddNewFoodUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create" />
 </LinearLayout>

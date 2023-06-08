@@ -5,12 +5,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CalendarView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.example.thanh.R;
-import com.example.thanh.model.CourseSchedule;
+import com.example.thanh.model.*;
 import com.example.thanh.retrofit.ApiService;
 import com.example.thanh.retrofit.RetrofitClient;
 import com.google.gson.Gson;
@@ -42,14 +43,22 @@ public class course_user_calendar extends NavActivity {
 
         int courseId = getIntent().getIntExtra("_id", -1);
 
+        ImageButton btnGoBack = findViewById(R.id.btnBack);
+        btnGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed(); // Navigate back to the previous screen
+            }
+        });
+
         apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
-        Call<CourseSchedule> call = apiService.getCourseSchedule(courseId);
-        call.enqueue(new Callback<CourseSchedule>() {
+        Call<CourseScheduleDetail> call = apiService.getCourseSchedule(courseId);
+        call.enqueue(new Callback<CourseScheduleDetail>() {
             @Override
-            public void onResponse(retrofit2.Call<CourseSchedule> call, Response<CourseSchedule> response) {
+            public void onResponse(retrofit2.Call<CourseScheduleDetail> call, Response<CourseScheduleDetail> response) {
                 if (response.isSuccessful()) {
-                    CourseSchedule course = response.body();
+                    CourseScheduleDetail course = response.body();
                     String jsonString = new Gson().toJson(course);
                     Log.d("RES Schedule", jsonString);
                     Log.d("API schedule", "Success");
@@ -60,39 +69,49 @@ public class course_user_calendar extends NavActivity {
             }
 
             @Override
-            public void onFailure(Call<CourseSchedule> call, Throwable t) {
+            public void onFailure(Call<CourseScheduleDetail> call, Throwable t) {
                 String errorMessage = t.getMessage();
                 Log.d("Error: ", errorMessage);
             }
         });
     }
 
-    private void displaySchedule(CourseSchedule courseSchedule) {
+    private void displaySchedule(CourseScheduleDetail courseSchedule) {
         CalendarView calendarView = findViewById(R.id.calendarView);
-        TextView dayTitle = findViewById(R.id.dayTitle);
         TextView dayNote = findViewById(R.id.dayNote);
         TextView dayNot = findViewById(R.id.dayNot);
+        TextView dayName = findViewById(R.id.dayName);
+        Calendar calendar = Calendar.getInstance();
+        long nowInMillis = calendar.getTimeInMillis();
+        if(nowInMillis >= courseSchedule.getCourseSchedule().getFromDateTime() * 1000 && nowInMillis <= courseSchedule.getCourseSchedule().getToDateTime() * 1000){
+            dayNot.setVisibility(View.GONE);
+            dayNote.setVisibility(View.VISIBLE);
+        } else {
+            dayNot.setVisibility(View.VISIBLE);
+            dayNote.setVisibility(View.GONE);
+        }
+
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
-                dayTitle.setVisibility(View.GONE);
                 dayNote.setVisibility(View.GONE);
+                dayName.setVisibility(View.GONE);
                 dayNot.setVisibility(View.VISIBLE);
                 // Lấy giá trị ngày được chọn
                 Calendar selectedDate = Calendar.getInstance();
                 selectedDate.set(year, month, dayOfMonth);
 
-                long from = courseSchedule.getFromDateTime();
-                long to = courseSchedule.getToDateTime();
-                Date dateFrom = new Date(from * 1000);
-                Date dateTo = new Date(to * 1000);
+//                long from = courseSchedule.getFromDateTime();
+//                long to = courseSchedule.getToDateTime();
+//                Date dateFrom = new Date(from * 1000);
+//                Date dateTo = new Date(to * 1000);
 
                 // Tạo định dạng cho đối tượng Date
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
                 // Chuyển đổi đối tượng Date thành chuỗi ngày tháng
-                String fromDate = dateFormat.format(dateFrom);
-                String toDate = dateFormat.format(dateTo);
+//                String fromDate = dateFormat.format(dateFrom);
+//                String toDate = dateFormat.format(dateTo);
 //                Log.d("from", fromDate);
 //                Log.d("to", toDate);
 
@@ -109,13 +128,16 @@ public class course_user_calendar extends NavActivity {
 //                Log.d("now", nowDate);
 
                 // So sánh với từng CourseSchedule và hiển thị ghi chú tương ứng
-                if (selectedDateTime >= courseSchedule.getFromDateTime() * 1000 && selectedDateTime <= courseSchedule.getToDateTime() * 1000) {
-                    String note = courseSchedule.getNote();
+                if (selectedDateTime >= courseSchedule.getCourseSchedule().getFromDateTime() * 1000 && selectedDateTime <= courseSchedule.getCourseSchedule().getToDateTime() * 1000) {
+                    String note = courseSchedule.getCourseSchedule().getNote();
+                    String courseName = courseSchedule.getCourseInfo().getTitle();
                     // Hiển thị ghi chú
                     Log.d("Show", "Success");
                     dayNot.setVisibility(View.GONE);
                     dayNote.setVisibility(View.VISIBLE);
                     dayNote.setText(note);
+                    dayName.setVisibility(View.VISIBLE);
+                    dayName.setText(courseName);
                 }
             }
         });

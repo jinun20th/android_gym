@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -38,6 +39,15 @@ public class message_user_get extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_message);
         Log.d("bug","vô");
+
+        ImageButton btnGoBack = findViewById(R.id.btnBack);
+        btnGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed(); // Navigate back to the previous screen
+            }
+        });
+
         //get id from intent
         conversationId = getIntent().getIntExtra("conversation_id", -1);
         userId = getIntent().getIntExtra("user_id", -1);

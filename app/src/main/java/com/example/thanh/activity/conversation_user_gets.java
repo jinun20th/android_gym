@@ -10,6 +10,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -52,6 +53,14 @@ public class conversation_user_gets extends NavActivity implements ConversationA
         listView = findViewById(R.id.list_view);
         searchEditText = findViewById(R.id.searchEditText);
         addNewPartner = findViewById(R.id.addNewPartner);
+
+        ImageButton btnGoBack = findViewById(R.id.btnBack);
+        btnGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed(); // Navigate back to the previous screen
+            }
+        });
 
         // Khởi tạo Retrofit
         Retrofit retrofit = getRetrofitInstance();

@@ -100,9 +100,6 @@ public class course_user_get extends NavActivity {
         ImageView imageViewInsAva = findViewById(R.id.imageViewInsAva);
         TextView textViewInsInfo = findViewById(R.id.textViewInsInfo);
 
-        TextView textViewRateName = findViewById(R.id.textViewRateName);
-        TextView textViewRateInfo = findViewById(R.id.textViewRateInfo);
-
         TextView textViewPrice = findViewById(R.id.textViewPrice);
 
         imageViewAva.setImageResource(R.drawable.course);
@@ -114,14 +111,11 @@ public class course_user_get extends NavActivity {
         btnReg1.setText(String.valueOf(course.getCourses().getFee()) + ".00 $");
         textViewPrice.setText(String.valueOf(course.getCourses().getFee()) + ".00 $");
 
-        textViewDescInfo.setText("Lorem Lorem Ipsum has been the specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+        textViewDescInfo.setText(course.getCourses().getDescription());
 
         textViewInsName.setText(course.getTrainerinfo().getFirstName() + course.getTrainerinfo().getLastName());
         textViewInsRole.setText("Fitness Coach");
         imageViewInsAva.setImageResource(R.drawable.ins);
-        textViewInsInfo.setText("Lorem since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
-
-        textViewRateName.setText("Thanh Phan");
-        textViewRateInfo.setText("Lorem Ipsum is with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+        textViewInsInfo.setText("It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
     }
 }

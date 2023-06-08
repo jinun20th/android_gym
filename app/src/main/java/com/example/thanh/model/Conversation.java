@@ -3,11 +3,7 @@ package com.example.thanh.model;
 public class Conversation {
     private int _id;
     private int userId;
-
-    public Conversation(){
-
-    }
-
+    public Conversation(){}
     public void set_id(int _id) {
         this._id = _id;
     }
@@ -35,7 +31,6 @@ public class Conversation {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
-
     public void set__v(int __v) {
         this.__v = __v;
     }
@@ -54,8 +49,7 @@ public class Conversation {
     private String Message;
 
     // Constructor
-    public Conversation(int _id, int userId, int partnerId, boolean isGroupConver, boolean isBlock, int lastActive,
-                        String nickname, int __v, PartnerInfo partnerinfo, String message) {
+    public Conversation(int _id, int userId, int partnerId, boolean isGroupConver, boolean isBlock, int lastActive, String nickname, int __v, PartnerInfo partnerinfo, String message) {
         this._id = _id;
         this.userId = userId;
         this.partnerId = partnerId;

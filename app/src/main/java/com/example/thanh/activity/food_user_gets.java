@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -62,6 +63,15 @@ public class food_user_gets extends NavActivity {
         sumKcalDay = findViewById(R.id.sumkcal);
         sumKcalSession = findViewById(R.id.sumkcalsession);
         addNewFood = findViewById(R.id.addNewFood);
+
+        ImageButton btnGoBack = findViewById(R.id.btnBack);
+        btnGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed(); // Navigate back to the previous screen
+            }
+        });
+
         Log.d("bug", "vô view Food");
         // Khởi tạo Retrofit
         Retrofit retrofit = getRetrofitInstance();

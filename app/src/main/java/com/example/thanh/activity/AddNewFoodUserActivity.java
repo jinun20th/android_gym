@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -56,6 +57,14 @@ public class AddNewFoodUserActivity extends AppCompatActivity {
         AddNewFoodUser = findViewById(R.id.AddNewFoodUser);
         listFood = findViewById(R.id.listFood);
         AddNewFood = findViewById(R.id.AddFood);
+
+        ImageButton btnGoBack = findViewById(R.id.btnBack);
+        btnGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed(); // Navigate back to the previous screen
+            }
+        });
 
         // Khởi tạo Retrofit
         Retrofit retrofit = getRetrofitInstance();

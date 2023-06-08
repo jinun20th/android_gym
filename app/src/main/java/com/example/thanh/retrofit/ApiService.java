@@ -1,10 +1,18 @@
 package com.example.thanh.retrofit;
 
-import com.example.thanh.model.*;
+import com.example.thanh.model.Conversation;
+import com.example.thanh.model.Course;
 import com.example.thanh.model.CourseDetail;
-import com.example.thanh.model.CourseUser;
 import com.example.thanh.model.CourseRegister;
-import com.example.thanh.model.CourseSchedule;
+import com.example.thanh.model.CourseScheduleDetail;
+import com.example.thanh.model.CourseUser;
+import com.example.thanh.model.FoodItem;
+import com.example.thanh.model.FoodUser;
+import com.example.thanh.model.LikeRequest;
+import com.example.thanh.model.Message;
+import com.example.thanh.model.Post;
+import com.example.thanh.model.PostReaction;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -28,7 +36,7 @@ public interface ApiService {
     Call<CourseRegister> createCourseUser(@Body CourseRegister courseUser);
 
     @GET("v1/courseSchedule")
-    Call<CourseSchedule> getCourseSchedule(@Query("courseId") int id);
+    Call<CourseScheduleDetail> getCourseSchedule(@Query("courseId") int id);
 
     @GET("v1/conversation/{id}")
     Call<List<Conversation>> getConversation(@Path("id") int id);

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -55,6 +56,14 @@ public class CommentActivity  extends AppCompatActivity {
         listView_comment = findViewById(R.id.list_comment);
         commentEditText = findViewById(R.id.commentEditText);
         postCommentButton = findViewById(R.id.postCommentButton);
+
+        ImageButton btnGoBack = findViewById(R.id.btnBack);
+        btnGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed(); // Navigate back to the previous screen
+            }
+        });
 
         // Thực hiện các hành động tương ứng
         postCommentButton.setOnClickListener(new View.OnClickListener() {
